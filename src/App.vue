@@ -41,7 +41,7 @@ export default {
 <style>
 @font-face {
     font-family: Fontin;
-    src: url(~/Fontin-Regular.ttf);
+    src: url(~@/assets/fonts/Fontin-Regular.ttf);
 }
 
 #app {
