@@ -38,7 +38,7 @@ export default {
     methods: {
         keypress(e) {
             if (e.key == "Enter") {
-                this.connection.send("Send", this.username, this.newMessage);
+                this.connection.send("Send", this.newMessage);
                 this.newMessage = null;
             }
         },
