@@ -1,28 +1,55 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Chat v-if="isAuthenticated" :server="server" :token="token" :username="username" />
+    <Login v-else @login="login" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Login from './components/Login.vue'
+import Chat from './components/Chat.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Login,
+    Chat
+  },
+  data() {
+    return {
+      token: null
+    }
+  },
+  methods: {
+    login(server, token, username) {
+      this.server = server;
+      this.token = token;
+      this.username = username;
+    },
+    logout() {
+      this.token = null;
+    }
+  },
+  computed: {
+    isAuthenticated() {
+      return this.token != null;
+    }
   }
 }
 </script>
 
 <style>
+@font-face {
+    font-family: Fontin;
+    src: url(~/Fontin-Regular.ttf);
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-top: 25vh;
 }
 </style>
