@@ -2,7 +2,7 @@
     <div>
         <ul>
             <li v-for="message in messages" :key="message.key">
-                <span :style="{ color: senderColor(message.sender) }" >{{ message.sender }}</span>: {{ message.text }}
+                <span :style="senderStyle(message.sender)" >{{ message.sender }}</span>: {{ message.text }}
             </li>
         </ul>
         <input type="text" v-model="newMessage" @keypress.enter="send" />
@@ -40,10 +40,10 @@ export default {
             this.connection.send("Send", this.newMessage);
             this.newMessage = null;
         },
-        senderColor(sender) {
-            if (sender == this.username)
-                return "yellow";
-            return "navy";
+        senderStyle(sender) {
+            return {
+                color: (sender == this.username ? "yellow" : "navy")
+            };
         }
     }
 }
