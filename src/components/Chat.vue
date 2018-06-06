@@ -5,7 +5,7 @@
                 <span :style="{ color: senderColor(message.sender) }" >{{ message.sender }}</span>: {{ message.text }}
             </li>
         </ul>
-        <input type="text" v-model="newMessage" @keypress="keypress" />
+        <input type="text" v-model="newMessage" @keypress.enter="send" />
     </div>
 </template>
 
@@ -36,11 +36,9 @@ export default {
         });
     },
     methods: {
-        keypress(e) {
-            if (e.key == "Enter") {
-                this.connection.send("Send", this.newMessage);
-                this.newMessage = null;
-            }
+        send() {
+            this.connection.send("Send", this.newMessage);
+            this.newMessage = null;
         },
         senderColor(sender) {
             if (sender == this.username)
