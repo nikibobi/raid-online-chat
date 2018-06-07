@@ -67,7 +67,7 @@ ul {
     width: 284px;
     overflow-y: auto;
     font-family: Fontin;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 li {
@@ -81,6 +81,7 @@ input {
     box-sizing: border-box;
     width: 100%;
     font-family: Fontin;
+    font-size: 14px;
     padding: 4px;
     /* remove focused outline */
     outline-style: none;
