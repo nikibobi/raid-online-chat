@@ -82,5 +82,9 @@ input {
     width: 100%;
     font-family: Fontin;
     padding: 4px;
+    /* remove focused outline */
+    outline-style: none;
+    box-shadow: none;
+    border-color: transparent;
 }
 </style>
