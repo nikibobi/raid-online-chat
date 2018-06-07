@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --dest docs"
+    "build": "vue-cli-service build --dest docs",
+    "fix": "npm run fix-index && npm run fix-css",
+    "fix-index": "sed -i -E 's/(href|src)=\\//\\1=/g' docs/index.html",
+    "fix-css": "sed -i -E 's/(url\\()(\\/)/\\1\\.\\.\\2/g' docs/css/*.css"
   },
   "dependencies": {
     "vue": "^2.5.16"
