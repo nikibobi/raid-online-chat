@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ul>
+        <ul ref="chat">
             <li v-for="message in messages" :key="message.key">
                 <span :style="senderStyle(message.sender)" >{{ message.sender }}</span>: {{ message.text }}
             </li>
@@ -35,6 +35,14 @@ export default {
             this.messages.push({ sender, text });
         });
     },
+    watch: {
+        messages: function() {
+            this.$nextTick(function() {
+                const container = this.$refs["chat"];
+                container.scrollTop = container.scrollHeight;
+            });
+        }
+    },
     methods: {
         send() {
             this.connection.send("Send", this.newMessage);
@@ -57,7 +65,7 @@ ul {
     margin: 0;
     height: 228px;
     width: 284px;
-    overflow-y: scroll;
+    overflow-y: auto;
     font-family: Fontin;
     font-size: 12px;
 }
