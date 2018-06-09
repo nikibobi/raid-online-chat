@@ -45,7 +45,9 @@ export default {
     },
     methods: {
         send() {
-            this.connection.send("Send", this.newMessage);
+            if (this.newMessage && !/^\s*$/g.test(this.newMessage)) {
+                this.connection.send("Send", this.newMessage);
+            }
             this.newMessage = null;
         },
         senderStyle(sender) {
